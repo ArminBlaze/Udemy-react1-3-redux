@@ -9,19 +9,35 @@ import { createStore } from 'redux';
 
 const reducer = (state = 0, action = {}) => {
 
-  if(action.type === 'INC') {
-    return state + 1;
+  switch(action.type) {
+    case 'INC':
+      return state + 1;
+    case 'DEC':
+      return state - 1;
+    default:
+      return state;
   }
-
-  return state;
 }
 
 const store = createStore(reducer);
+const counter = document.getElementById('counter');
 
-store.subscribe( () => {
+store.subscribe(update);
+
+document
+  .getElementById('increment')
+  .addEventListener('click', () => { 
+    store.dispatch({type: 'INC'})
+  });
+
+document
+  .getElementById('decrement')
+  .addEventListener('click', () => { 
+    store.dispatch({type: 'DEC'})
+  });
+  
+  
+function update () {
   console.log( store.getState() );
-})
-
-
-store.dispatch({type: 'INC'});
-store.dispatch({type: 'INC'});
+  counter.innerHTML = store.getState()
+}
