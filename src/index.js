@@ -4,8 +4,8 @@
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 
+import { createStore } from 'redux';
 
-const initialState = 0;
 
 const reducer = (state = 0, action = {}) => {
 
@@ -16,7 +16,12 @@ const reducer = (state = 0, action = {}) => {
   return state;
 }
 
-let newState = reducer(undefined, {});
-// let newState = reducer(initialState, {type: 'INC'});
+const store = createStore(reducer);
 
-console.log(newState);
+store.subscribe( () => {
+  console.log( store.getState() );
+})
+
+
+store.dispatch({type: 'INC'});
+store.dispatch({type: 'INC'});
