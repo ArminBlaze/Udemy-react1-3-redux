@@ -29,13 +29,13 @@ store.subscribe(update);
 document
   .getElementById('increment')
   .addEventListener('click', () => { 
-    store.dispatch({type: 'INC'})
+    store.dispatch( inc() );
   });
 
 document
   .getElementById('decrement')
   .addEventListener('click', () => { 
-    store.dispatch({type: 'DEC'})
+    store.dispatch( dec() );
   });
 
 document
@@ -43,14 +43,29 @@ document
   .addEventListener('click', () => { 
     const value = Math.floor( Math.random() * 10 ) + 1;
     console.log('Random: ' + value)
-    store.dispatch({
-      type: 'RND',
-      value
-    })
+    store.dispatch( rnd(value) );
   });
   
   
 function update () {
   console.log( store.getState() );
   counter.innerHTML = store.getState()
+}
+
+function rnd (value) {
+  return {
+    type: 'RND',
+    value
+  }
+}
+
+function inc () {
+  return {type: 'INC'}
+}
+
+//другой вариант - через стрелки. Но его нужно объявить до использования.
+// const inc = () => ({type: 'INC'});
+
+function dec () {
+  return {type: 'DEC'}
 }
