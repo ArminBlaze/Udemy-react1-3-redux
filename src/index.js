@@ -6,34 +6,30 @@
 
 import { createStore, bindActionCreators } from 'redux';
 import reducer from 'reducer';
-import { inc, dec, rnd} from 'actions';
+import * as actions from 'actions';
 
 const store = createStore(reducer);
 const { dispatch } = store;
 const counter = document.getElementById('counter');
 
-const { incDispatch, decDispatch, rndDispatch } = bindActionCreators({
-  incDispatch: inc,
-  decDispatch: dec,
-  rndDispatch: rnd,
-}, dispatch);
+const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
 
 store.subscribe(update);
 
 document
   .getElementById('increment')
-  .addEventListener('click', incDispatch);
+  .addEventListener('click', inc);
 
 document
   .getElementById('decrement')
-  .addEventListener('click', decDispatch);
+  .addEventListener('click', dec);
 
 document
   .getElementById('random')
   .addEventListener('click', () => { 
     const value = Math.floor( Math.random() * 10 ) + 1;
     console.log('Random: ' + value)
-    rndDispatch(value);
+    rnd(value);
   });
   
   
