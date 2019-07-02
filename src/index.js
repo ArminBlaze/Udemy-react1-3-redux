@@ -5,21 +5,8 @@
 // ReactDOM.render(<App />, document.getElementById('root'));
 
 import { createStore } from 'redux';
-
-
-const reducer = (state = 0, action = {}) => {
-
-  switch(action.type) {
-    case 'INC':
-      return state + 1;
-    case 'DEC':
-      return state - 1;
-    case 'RND':
-      return state + action.value;
-    default:
-      return state;
-  }
-}
+import reducer from 'reducer';
+import { inc, dec, rnd} from 'actions';
 
 const store = createStore(reducer);
 const counter = document.getElementById('counter');
@@ -52,20 +39,3 @@ function update () {
   counter.innerHTML = store.getState()
 }
 
-function rnd (value) {
-  return {
-    type: 'RND',
-    value
-  }
-}
-
-function inc () {
-  return {type: 'INC'}
-}
-
-//другой вариант - через стрелки. Но его нужно объявить до использования.
-// const inc = () => ({type: 'INC'});
-
-function dec () {
-  return {type: 'DEC'}
-}
