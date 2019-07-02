@@ -12,9 +12,13 @@ const store = createStore(reducer);
 const { dispatch } = store;
 const counter = document.getElementById('counter');
 
-const incDispatch = () => dispatch( inc() );
-const decDispatch = () => dispatch( dec() );
-const rndDispatch = (value) => dispatch( rnd(value) );
+const bindActionCreator = (creator, dispatch) => (...args) => {
+  dispatch( creator(...args) );
+}
+
+const incDispatch = bindActionCreator(inc, dispatch);
+const decDispatch = bindActionCreator(dec, dispatch);
+const rndDispatch = bindActionCreator(rnd, dispatch);
 
 store.subscribe(update);
 
