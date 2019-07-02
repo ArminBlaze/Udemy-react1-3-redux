@@ -9,28 +9,29 @@ import reducer from 'reducer';
 import { inc, dec, rnd} from 'actions';
 
 const store = createStore(reducer);
+const { dispatch } = store;
 const counter = document.getElementById('counter');
+
+const incDispatch = () => dispatch( inc() );
+const decDispatch = () => dispatch( dec() );
+const rndDispatch = (value) => dispatch( rnd(value) );
 
 store.subscribe(update);
 
 document
   .getElementById('increment')
-  .addEventListener('click', () => { 
-    store.dispatch( inc() );
-  });
+  .addEventListener('click', incDispatch);
 
 document
   .getElementById('decrement')
-  .addEventListener('click', () => { 
-    store.dispatch( dec() );
-  });
+  .addEventListener('click', decDispatch);
 
 document
   .getElementById('random')
   .addEventListener('click', () => { 
     const value = Math.floor( Math.random() * 10 ) + 1;
     console.log('Random: ' + value)
-    store.dispatch( rnd(value) );
+    rndDispatch(value);
   });
   
   
