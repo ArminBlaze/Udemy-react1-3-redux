@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
+import * as actions from 'actions';
 
 // const { dispatch } = store;
 // const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
@@ -35,9 +36,17 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+  const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
+
   return {
     // имя свойства: функция
-    inc: () => dispatch({type: 'INC'}),
+    inc,
+    dec,
+    rnd: () => { 
+      const value = Math.floor( Math.random() * 10 ) + 1;
+      console.log('Random: ' + value)
+      rnd(value);
+    }
   }
 }
 
