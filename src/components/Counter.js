@@ -2,20 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 
-// const { dispatch } = store;
-// const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
-
-{/* <Counter 
-    counter={ store.getState() }
-    inc={ inc }
-    dec={ dec }
-    rnd={ () => { 
-      const value = Math.floor( Math.random() * 10 ) + 1;
-      console.log('Random: ' + value)
-      rnd(value);
-    } }
-    /> */}
-
 
 const Counter = ({counter, inc, dec, rnd}) => {
   return (
