@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
 
 // const { dispatch } = store;
 // const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
@@ -33,4 +34,11 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(Counter);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // имя свойства: функция
+    inc: () => dispatch({type: 'INC'}),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
