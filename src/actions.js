@@ -1,7 +1,7 @@
-export function rnd (value) {
+export function rnd () {
   return {
     type: 'RND',
-    value
+    value: Math.floor( Math.random() * 10 ) + 1
   }
 }
 

@@ -36,18 +36,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
-
-  return {
-    // имя свойства: функция
-    inc,
-    dec,
-    rnd: () => { 
-      const value = Math.floor( Math.random() * 10 ) + 1;
-      console.log('Random: ' + value)
-      rnd(value);
-    }
-  }
+  return bindActionCreators(actions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
